@@ -25,7 +25,7 @@ ENV VITE_MEDUSA_BASE=$VITE_MEDUSA_BASE \
 COPY package.json yarn.lock ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile
+RUN yarn install --network-timeout 600000
 
 # Copy source code
 COPY . .
