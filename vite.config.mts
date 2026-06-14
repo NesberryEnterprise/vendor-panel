@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
       // Next strips it (/store/ -> 308 -> /store) and React Router cannot strip a
       // "/store/" basename from location "/store" (blank page). vite base keeps the
       // trailing slash for assets; the router basename drops it.
-      __BASE__: JSON.stringify(BASE === "/" ? "/" : BASE.replace(//+$/, "")),
+      __BASE__: JSON.stringify(BASE === "/" ? "/" : (BASE.endsWith("/") ? BASE.slice(0, -1) : BASE)),
       __BACKEND_URL__: JSON.stringify(BACKEND_URL),
       __STOREFRONT_URL__: JSON.stringify(STOREFRONT_URL),
       __PUBLISHABLE_API_KEY__: JSON.stringify(PUBLISHABLE_API_KEY),
