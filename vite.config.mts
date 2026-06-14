@@ -23,6 +23,12 @@ export default defineConfig(({ mode }) => {
   const sources = MEDUSA_PROJECT ? [MEDUSA_PROJECT] : []
 
   return {
+    // Nesberry (D-STORE-SSO): serve the panel under the storefront subpath
+    // nesberry.com/store via reverse-proxy. base drives the ASSET urls (/store/assets/*);
+    // VITE_MEDUSA_BASE must equal the proxy prefix. Upstream only fed BASE into
+    // __BASE__ (router basename) — without vite base, assets stayed at / and broke
+    // the subpath. Keep "/" for root-domain serving.
+    base: BASE,
     plugins: [
       inspect(),
       react(),
